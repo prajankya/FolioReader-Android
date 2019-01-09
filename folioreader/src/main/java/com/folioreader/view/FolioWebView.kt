@@ -279,9 +279,17 @@ class FolioWebView : WebView {
     }
 
     @JavascriptInterface
-    fun onTextSelectionItemClicked(id: Int, selectedText: String?) {
+    fun onTextSelectionItemClicked(id: Int, selectedText2: String?) {
 
         uiHandler.post { loadUrl("javascript:clearSelection()") }
+
+        var selectedText = selectedText2!!
+
+        if(selectedText.length > 200) {
+            selectedText = selectedText.substring(0, 200)
+        }
+
+        selectedText += "\n- Copied from Whizapp. The smart way to study.\nAvailable for  Android and IOS.\nhttps://whizapp.org/"
 
         when (id) {
             R.id.copySelection -> {
